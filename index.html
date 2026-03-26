@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage Spec QA - 领域测试解决方案</title>
+    <title>EAI-QA - 领域测试解决方案</title>
     <meta name="description" content="基于领域代码片段的测试自动化平台">
     <style>
         * {
@@ -367,14 +367,14 @@
 <body>
     <div class="container">
         <header>
-            <h1>Stage Spec QA <span class="badge">v0.0.1</span></h1>
+            <h1>EAI-QA <span class="badge">v0.0.1</span></h1>
             <p class="subtitle">领域测试自动化解决方案</p>
         </header>
 
         <main>
             <section>
-                <h2>什么是 Stage Spec QA？</h2>
-                <p>Stage Spec QA 是一个基于领域代码片段的测试自动化平台。通过代码片段约束测试步骤，确保测试执行的确定性和一致性。</p>
+                <h2>什么是 EAI-QA？</h2>
+                <p>EAI-QA 是一个基于领域代码片段的测试自动化平台。通过代码片段约束测试步骤，确保测试执行的确定性和一致性。</p>
 
                 <div class="features">
                     <div class="feature-card">
@@ -426,7 +426,7 @@
                 <h2>方案对比</h2>
                 <div class="comparison">
                     <div class="comparison-card highlight">
-                        <h3>Stage Spec QA</h3>
+                        <h3>EAI-QA</h3>
                         <ul>
                             <li>领域代码片段保障确定性</li>
                             <li>协议化执行，效率与精度平衡</li>
@@ -474,37 +474,76 @@
 
             <section>
                 <h2>工作流程</h2>
-                <div class="workflow">
-                    <div class="workflow-step">
-                        <div class="step-number">1</div>
-                        <h4>读取用例</h4>
-                        <p>解析测试用例文档</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">2</div>
-                        <h4>理解规划</h4>
-                        <p>编排执行规划</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">3</div>
-                        <h4>页面感知</h4>
-                        <p>定位页面元素</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">4</div>
-                        <h4>执行动作</h4>
-                        <p>执行测试操作</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">5</div>
-                        <h4>验证结果</h4>
-                        <p>检查测试结果</p>
-                    </div>
-                    <div class="workflow-step">
-                        <div class="step-number">6</div>
-                        <h4>脚本落袋</h4>
-                        <p>生成测试脚本</p>
-                    </div>
+                <div style="text-align: center; margin: 30px 0;">
+                    <svg viewBox="0 0 1000 350" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+                        <!-- 定义箭头 -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+                            </marker>
+                        </defs>
+
+                        <!-- 第一步：初始化环境 -->
+                        <rect x="20" y="145" width="100" height="50" rx="6" fill="#2c3e50" class="workflow-rect"/>
+                        <text x="70" y="175" fill="white" font-size="12" text-anchor="middle" font-weight="bold">初始化环境</text>
+
+                        <!-- 箭头 -->
+                        <line x1="120" y1="170" x2="150" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第二步：读取用例 -->
+                        <rect x="150" y="145" width="100" height="50" rx="6" fill="#34495e" class="workflow-rect"/>
+                        <text x="200" y="175" fill="white" font-size="12" text-anchor="middle" font-weight="bold">读取用例</text>
+
+                        <!-- 箭头 -->
+                        <line x1="250" y1="170" x2="280" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第三步：AI 理解规划 -->
+                        <rect x="280" y="145" width="120" height="50" rx="6" fill="#5dade2" class="workflow-rect"/>
+                        <text x="340" y="165" fill="white" font-size="11" text-anchor="middle" font-weight="bold">理解用例语义</text>
+                        <text x="340" y="185" fill="white" font-size="11" text-anchor="middle">编排执行规划</text>
+
+                        <!-- 箭头 -->
+                        <line x1="400" y1="170" x2="430" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第四步：页面感知 -->
+                        <rect x="430" y="125" width="120" height="90" rx="6" fill="#e74c3c" class="workflow-rect"/>
+                        <text x="490" y="150" fill="white" font-size="11" text-anchor="middle" font-weight="bold">页面感知</text>
+                        <text x="490" y="170" fill="white" font-size="9" text-anchor="middle">1. 领域代码片段</text>
+                        <text x="490" y="185" fill="white" font-size="9" text-anchor="middle">2. 前端框架 API</text>
+                        <text x="490" y="200" fill="white" font-size="9" text-anchor="middle">3. 无障碍树</text>
+
+                        <!-- 箭头 -->
+                        <line x1="550" y1="170" x2="580" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第五步：执行动作 -->
+                        <rect x="580" y="145" width="100" height="50" rx="6" fill="#f39c12" class="workflow-rect"/>
+                        <text x="630" y="175" fill="white" font-size="12" text-anchor="middle" font-weight="bold">执行动作</text>
+
+                        <!-- 箭头 -->
+                        <line x1="680" y1="170" x2="710" y2="170" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第六步：验证结果 -->
+                        <rect x="710" y="145" width="100" height="50" rx="6" fill="#2c3e50" class="workflow-rect"/>
+                        <text x="760" y="175" fill="white" font-size="12" text-anchor="middle" font-weight="bold">验证结果</text>
+
+                        <!-- 向下箭头 -->
+                        <line x1="760" y1="195" x2="760" y2="230" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第七步：脚本落袋 -->
+                        <rect x="710" y="230" width="100" height="50" rx="6" fill="#27ae60" class="workflow-rect"/>
+                        <text x="760" y="260" fill="white" font-size="12" text-anchor="middle" font-weight="bold">脚本落袋</text>
+
+                        <!-- 向左箭头 -->
+                        <line x1="710" y1="255" x2="660" y2="255" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- 第八步：产出报告 -->
+                        <rect x="540" y="230" width="120" height="50" rx="6" fill="#2c3e50" class="workflow-rect"/>
+                        <text x="600" y="260" fill="white" font-size="12" text-anchor="middle" font-weight="bold">产出报告</text>
+                    </svg>
+                </div>
+                <div style="text-align: center; margin-top: 30px; color: #666; font-size: 0.9rem;">
+                    <p><strong>完整的 8 步执行流程：</strong></p>
+                    <p style="margin-top: 10px;">初始化 → 读取用例 → AI 理解规划 → 页面感知（4层） → 执行动作 → 验证结果 → 脚本落袋 → 产出报告</p>
                 </div>
             </section>
 
@@ -528,7 +567,7 @@ stage-cli report --result-dir stage-cli-test/20260320164459</pre>
         </main>
 
         <footer>
-            <p>© 2024 Stage Spec QA</p>
+            <p>© 2026 EAI-QA</p>
             <div class="links">
                 <a href="https://playwright.dev" target="_blank">Playwright</a>
                 <a href="https://github.com/anthropics/skills" target="_blank">Agent Skills</a>
