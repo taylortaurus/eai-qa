@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EAI-QA - 领域测试解决方案</title>
     <meta name="description" content="基于领域代码片段的测试自动化平台">
+    <meta name="color-scheme" content="light dark">
     <style>
         * {
             margin: 0;
@@ -12,268 +13,400 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: rgba(0, 0, 0, 0.05);
+            --shadow-md: rgba(0, 0, 0, 0.1);
+            --shadow-lg: rgba(0, 0, 0, 0.15);
+            --workflow-step-1: #3b82f6;
+            --workflow-step-2: #8b5cf6;
+            --workflow-step-3: #06b6d4;
+            --workflow-step-4: #10b981;
+            --workflow-step-5: #f59e0b;
+            --workflow-step-6: #6366f1;
+            --workflow-arrow: #94a3b8;
+            --highlight-green: #22c55e;
+            --workflow-bg: #ffffff;
+        }
+
+        /* 暗黑模式 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0f172a;
+                --bg-secondary: #1e293b;
+                --bg-card: #1e293b;
+                --bg-card-hover: #334155;
+                --text-primary: #f1f5f9;
+                --text-secondary: #cbd5e1;
+                --border-color: #334155;
+                --shadow-sm: rgba(0, 0, 0, 0.3);
+                --shadow-md: rgba(0, 0, 0, 0.4);
+                --shadow-lg: rgba(0, 0, 0, 0.5);
+                --workflow-arrow: #60a5fa;
+                --workflow-bg: #1e293b;
+            }
+        }
+
+        /* 自动模式 - 减少动画 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 40px 24px;
+            background: var(--bg-secondary);
+            box-shadow: 0 1px 3px var(--shadow-md);
+            border-radius: 16px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         header {
-            border-bottom: 3px solid #2c3e50;
-            padding: 40px 0;
-            margin-bottom: 40px;
+            text-align: center;
+            padding: 48px 0;
+            margin-bottom: 56px;
+            border-bottom: 2px solid var(--border-color);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-
-        header h1::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: #2c3e50;
-            transition: width 0.5s ease;
-        }
-
-        header:hover h1::after {
-            width: 100%;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
 
         header .subtitle {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
         }
 
         main {
-            padding: 0 20px 60px;
+            padding: 0 0 60px;
         }
 
         section {
-            margin-bottom: 60px;
+            margin-bottom: 72px;
         }
 
         section h2 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ecf0f1;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: #2c3e50;
-            transition: width 0.5s ease;
-        }
-
-        section:hover h2::after {
-            width: 100px;
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--border-color);
+            letter-spacing: -0.01em;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
         }
 
         .feature-card {
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
-            padding: 30px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(44, 62, 80, 0.03), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border-color: #2c3e50;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px var(--shadow-lg);
+            border-color: var(--workflow-arrow);
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-card h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--workflow-arrow);
+            border-radius: 50%;
         }
 
         .feature-card p {
-            color: #666;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .comparison {
-            margin-top: 30px;
+            margin-top: 32px;
         }
 
         .comparison-card {
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
-            padding: 30px;
-            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
             margin-bottom: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .comparison-card.highlight {
-            background: #e8f5e9;
-            border-color: #4caf50;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .comparison-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+            box-shadow: 0 8px 20px var(--shadow-md);
+            border-color: var(--workflow-arrow);
         }
 
-        .comparison-card.highlight:hover {
-            transform: translateX(5px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.3);
+        .comparison-card.highlight {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-color: var(--highlight-green);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        }
+
+        .comparison-card.highlight h3 {
+            color: #065f46;
         }
 
         .comparison-card h3 {
-            font-size: 1.4rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
         }
 
         .comparison-card ul {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
 
         .comparison-card li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             margin-bottom: 12px;
-            padding-left: 25px;
+            padding-left: 28px;
             position: relative;
-            color: #666;
+            line-height: 1.7;
         }
 
         .comparison-card li::before {
-            content: '•';
+            content: '→';
             position: absolute;
-            left: 5px;
-            color: #2c3e50;
-            font-weight: bold;
+            left: 8px;
+            color: var(--workflow-arrow);
+            font-weight: 600;
         }
 
-        .workflow {
+        /* 工作流程区域 */
+        .workflow-section {
+            max-width: 800px;
+            margin: 48px auto;
+        }
+
+        .workflow-title {
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .workflow-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
+            flex-direction: column;
+            gap: 24px;
         }
 
         .workflow-step {
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            width: 180px;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 32px;
             position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .workflow-step::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 40px;
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .workflow-step:last-child::before {
+            display: none;
         }
 
         .workflow-step:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: #2c3e50;
-            z-index: 10;
+            transform: translateX(4px);
+            box-shadow: 0 8px 20px var(--shadow-md);
+            border-color: var(--workflow-arrow);
         }
 
-        .workflow-step:hover .step-number {
-            transform: scale(1.1);
-            background: #34495e;
+        .workflow-step:hover::before {
+            background: var(--workflow-arrow);
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 15px;
+            width: 48px;
+            height: 48px;
+            background: var(--workflow-step-1);
+            color: white;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
             transition: all 0.3s ease;
         }
 
-        .workflow-step h4 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
+        .step-number.step-2 {
+            background: var(--workflow-step-2);
         }
 
-        .workflow-step p {
+        .step-number.step-3 {
+            background: var(--workflow-step-3);
+        }
+
+        .step-number.step-4 {
+            background: var(--workflow-step-4);
+        }
+
+        .step-number.step-5 {
+            background: var(--workflow-step-5);
+        }
+
+        .step-number.step-6 {
+            background: var(--workflow-step-6);
+        }
+
+        .workflow-step:hover .step-number {
+            transform: scale(1.05);
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .step-detail {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .step-detail strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .layer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .layer-tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .workflow-summary {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        .workflow-summary h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .workflow-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .workflow-summary li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .workflow-summary li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--highlight-green);
+            font-weight: 600;
         }
 
         .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 25px;
-            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 28px 32px;
+            border-radius: 12px;
             overflow-x: auto;
-            margin-top: 20px;
-            font-family: 'Courier New', monospace;
+            margin-top: 24px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .code-block:hover {
-            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
-            transform: scale(1.01);
+            box-shadow: 0 4px 12px var(--shadow-md);
         }
 
         .code-block pre {
@@ -284,82 +417,67 @@
 
         footer {
             text-align: center;
-            padding: 40px 20px;
-            background: #2c3e50;
-            color: #ecf0f1;
+            padding: 48px 24px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
         }
 
         footer p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
         }
 
         .links a {
-            color: #3498db;
+            color: var(--workflow-arrow);
             text-decoration: none;
-            margin: 0 15px;
+            font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            display: inline-block;
-        }
-
-        .links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3498db;
-            transition: width 0.3s ease;
         }
 
         .links a:hover {
-            text-decoration: none;
-            color: #2980b9;
+            color: var(--workflow-step-1);
             transform: translateY(-2px);
-        }
-
-        .links a:hover::after {
-            width: 100%;
         }
 
         .badge {
             display: inline-block;
-            background: #2c3e50;
+            background: var(--workflow-arrow);
             color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
+            padding: 8px 16px;
+            border-radius: 8px;
             font-size: 0.85rem;
-            margin-left: 10px;
+            font-weight: 600;
+            margin-left: 12px;
             vertical-align: middle;
             transition: all 0.3s ease;
         }
 
         .badge:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .container {
+                padding: 24px 16px;
             }
 
-            .features,
-            .workflow {
+            header h1 {
+                font-size: 2.25rem;
+            }
+
+            .features {
                 grid-template-columns: 1fr;
             }
 
-            main {
-                padding: 0 15px 40px;
-            }
-
-            .workflow {
-                flex-direction: column;
-            }
-
-            .workflow-step {
-                width: 100%;
+            section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -474,93 +592,86 @@
 
             <section>
                 <h2>工作流程</h2>
-                <div style="max-width: 800px; margin: 40px auto;">
-                    <svg viewBox="0 0 600 750" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
-                        <!-- 定义箭头 -->
-                        <defs>
-                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
-                            </marker>
-                        </defs>
+                <div class="workflow-section">
+                    <div class="workflow-container">
+                        <div class="workflow-step">
+                            <div class="step-number step-1">1</div>
+                            <div class="step-title">初始化环境</div>
+                            <div class="step-detail">
+                                <strong>close-all</strong>，读取 .env-stage 配置
+                            </div>
+                        </div>
 
-                        <!-- 第一步：初始化环境 -->
-                        <rect x="200" y="20" width="200" height="60" rx="8" fill="#2c3e50" class="workflow-rect"/>
-                        <text x="300" y="55" fill="white" font-size="16" text-anchor="middle" font-weight="bold">1. 初始化环境</text>
-                        <text x="300" y="75" fill="white" font-size="12" text-anchor="middle">close-all, 读取 .env-stage</text>
+                        <div class="workflow-step">
+                            <div class="step-number step-2">2</div>
+                            <div class="step-title">读取用例文档</div>
+                            <div class="step-detail">
+                                解析测试用例内容，提取测试步骤和预期结果
+                            </div>
+                        </div>
 
-                        <!-- 向下箭头 -->
-                        <line x1="300" y1="80" x2="300" y2="120" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <div class="workflow-step">
+                            <div class="step-number step-3">3</div>
+                            <div class="step-title">理解用例语义</div>
+                            <div class="step-detail">
+                                AI 推理，编排执行规划
+                            </div>
+                        </div>
 
-                        <!-- 第二步：读取用例 -->
-                        <rect x="200" y="120" width="200" height="60" rx="8" fill="#34495e" class="workflow-rect"/>
-                        <text x="300" y="155" fill="white" font-size="16" text-anchor="middle" font-weight="bold">2. 读取用例文档</text>
-                        <text x="300" y="175" fill="white" font-size="12" text-anchor="middle">解析测试用例内容</text>
+                        <div class="workflow-step">
+                            <div class="step-number step-4">4</div>
+                            <div class="step-title">页面感知</div>
+                            <div class="step-detail">
+                                <strong>四层感知策略，逐层尝试</strong>
+                            </div>
+                            <div class="layer-tags">
+                                <span class="layer-tag">第1层：领域代码片段</span>
+                                <span class="layer-tag">第2层：前端框架 API</span>
+                                <span class="layer-tag">第3层：无障碍树 AT</span>
+                                <span class="layer-tag">第4层：AI 视觉（规划中）</span>
+                            </div>
+                        </div>
 
-                        <!-- 向下箭头 -->
-                        <line x1="300" y1="180" x2="300" y2="220" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <div class="workflow-step">
+                            <div class="step-number step-5">5</div>
+                            <div class="step-title">执行动作</div>
+                            <div class="step-detail">
+                                领域能力 / API / 固化脚本
+                            </div>
+                        </div>
 
-                        <!-- 第三步：理解用例语义 -->
-                        <rect x="200" y="220" width="200" height="60" rx="8" fill="#5dade2" class="workflow-rect"/>
-                        <text x="300" y="250" fill="white" font-size="14" text-anchor="middle" font-weight="bold">3. 理解用例语义</text>
-                        <text x="300" y="270" fill="white" font-size="11" text-anchor="middle">AI 推理，编排执行规划</text>
+                        <div class="workflow-step">
+                            <div class="step-number step-6">6</div>
+                            <div class="step-title">验证结果</div>
+                            <div class="step-detail">
+                                检查执行结果
+                            </div>
+                        </div>
 
-                        <!-- 向下箭头 -->
-                        <line x1="300" y1="280" x2="300" y2="320" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <div class="workflow-step">
+                            <div class="step-number step-4">7</div>
+                            <div class="step-title">脚本落袋</div>
+                            <div class="step-detail">
+                                生成 Playwright 脚本（通过后）
+                            </div>
+                        </div>
 
-                        <!-- 第四步：页面感知 -->
-                        <rect x="150" y="320" width="300" height="130" rx="8" fill="#e74c3c" class="workflow-rect"/>
-                        <text x="300" y="345" fill="white" font-size="14" text-anchor="middle" font-weight="bold">4. 页面感知（逐层尝试）</text>
-                        <line x1="180" y1="365" x2="420" y1="365" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-                        <text x="300" y="385" fill="white" font-size="11" text-anchor="middle">第1层：领域代码片段</text>
-                        <text x="300" y="405" fill="white" font-size="10" text-anchor="middle">第2层：前端框架 API (dump/active)</text>
-                        <text x="300" y="425" fill="white" font-size="10" text-anchor="middle">第3层：无障碍树 (AT) 失败兜底</text>
-                        <text x="300" y="440" fill="rgba(255,255,255,0.7)" font-size="10" text-anchor="middle">第4层：AI 视觉理解（规划中）</text>
+                        <div class="workflow-step">
+                            <div class="step-number step-2">8</div>
+                            <div class="step-title">产出报告</div>
+                            <div class="step-detail">
+                                result.json, HTML 报告
+                            </div>
+                        </div>
+                    </div>
 
-                        <!-- 向下箭头 -->
-                        <line x1="300" y1="450" x2="300" y2="490" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)"/>
-
-                        <!-- 第五步：执行动作 -->
-                        <rect x="200" y="490" width="200" height="60" rx="8" fill="#f39c12" class="workflow-rect"/>
-                        <text x="300" y="525" fill="white" font-size="14" text-anchor="middle" font-weight="bold">5. 执行动作</text>
-                        <text x="300" y="545" fill="white" font-size="11" text-anchor="middle">领域能力 / API / 固化脚本</text>
-
-                        <!-- 向下箭头 -->
-                        <line x1="300" y1="550" x2="300" y2="590" stroke="#2c3e50" stroke-width="3" marker-end="url(#arrowhead)"/>
-
-                        <!-- 第六步：验证结果 -->
-                        <rect x="200" y="590" width="200" height="60" rx="8" fill="#2c3e50" class="workflow-rect"/>
-                        <text x="300" y="625" fill="white" font-size="14" text-anchor="middle" font-weight="bold">6. 验证结果</text>
-                        <text x="300" y="645" fill="white" font-size="11" text-anchor="middle">检查执行结果</text>
-
-                        <!-- 分支：通过 vs 失败 -->
-                        <line x1="300" y1="650" x2="300" y2="680" stroke="#2c3e50" stroke-width="2"/>
-                        <line x1="450" y1="620" x2="480" y2="620" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead)"/>
-
-                        <!-- 通过分支：脚本落袋 -->
-                        <rect x="480" y="590" width="120" height="50" rx="8" fill="#27ae60" class="workflow-rect"/>
-                        <text x="540" y="620" fill="white" font-size="13" text-anchor="middle" font-weight="bold">脚本落袋</text>
-                        <text x="540" y="635" fill="white" font-size="10" text-anchor="middle">生成 Playwright 脚本</text>
-
-                        <!-- 分支：产出报告 -->
-                        <line x1="540" y1="640" x2="540" y2="680" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
-                        <line x1="200" y1="650" x2="200" y2="680" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
-
-                        <!-- 产出报告 -->
-                        <rect x="80" y="680" width="120" height="50" rx="8" fill="#2c3e50" class="workflow-rect"/>
-                        <text x="140" y="710" fill="white" font-size="12" text-anchor="middle" font-weight="bold">产出报告</text>
-                        <text x="140" y="725" fill="white" font-size="9" text-anchor="middle">result.json, HTML</text>
-                    </svg>
-                </div>
-                <div style="text-align: center; margin-top: 30px; color: #666; font-size: 0.9rem; line-height: 1.8;">
-                    <p><strong>完整的 6 步执行流程：</strong></p>
-                    <div style="margin-top: 15px; display: inline-block; text-align: left;">
-                        <p>① 初始化环境 → close-all, 读取配置</p>
-                        <p>② 读取用例 → 解析测试用例内容</p>
-                        <p>③ 理解语义 → AI 推理，编排执行规划</p>
-                        <p>④ 页面感知 → 4层感知策略（领域代码片段 → 前端框架 API → 无障碍树 → AI 视觉）</p>
-                        <p>⑤ 执行动作 → 领域能力 / API / 固化脚本</p>
-                        <p>⑥ 验证结果 → 检查执行结果</p>
-                        <p style="margin-left: 20px; color: #27ae60;">通过 → 脚本落袋 → 产出报告</p>
+                    <div class="workflow-summary">
+                        <h3>完整流程总结</h3>
+                        <ul>
+                            <li>初始化 → 读取用例 → 理解语义 → 页面感知 → 执行动作 → 验证结果</li>
+                            <li>通过后：脚本落袋 → 产出报告</li>
+                            <li>失败后：回退兜底机制</li>
+                        </ul>
                     </div>
                 </div>
             </section>
