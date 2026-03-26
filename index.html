@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage Spec QA - AI 驱动的领域测试解决方案</title>
-    <meta name="description" content="基于 Agent Skills 和领域代码片段的智能测试自动化平台">
+    <title>Stage Spec QA - 领域测试解决方案</title>
+    <meta name="description" content="基于领域代码片段的测试自动化平台">
     <style>
         * {
             margin: 0;
@@ -14,96 +14,75 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding: 40px 0;
+            margin-bottom: 40px;
         }
 
         header h1 {
             font-size: 2.5rem;
+            color: #2c3e50;
             margin-bottom: 10px;
         }
 
         header .subtitle {
             font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .version {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-top: 15px;
-            font-size: 0.9rem;
+            color: #666;
         }
 
         main {
-            padding: 40px;
+            padding: 0 20px 60px;
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         section h2 {
             font-size: 1.8rem;
-            color: #333;
+            color: #2c3e50;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 2px solid #ecf0f1;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             margin-top: 30px;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 25px;
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
         }
 
         .feature-card h3 {
             font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #333;
+            color: #2c3e50;
+            margin-bottom: 15px;
         }
 
         .feature-card p {
             color: #666;
-            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .comparison {
@@ -111,27 +90,22 @@
         }
 
         .comparison-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 25px;
-            border-radius: 15px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            border-left: 5px solid #667eea;
         }
 
         .comparison-card.highlight {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-left-color: white;
+            background: #e8f5e9;
+            border-color: #4caf50;
         }
 
         .comparison-card h3 {
             font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .comparison-card.highlight h3 {
-            color: white;
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
 
         .comparison-card ul {
@@ -140,75 +114,69 @@
         }
 
         .comparison-card li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
             color: #666;
         }
 
-        .comparison-card.highlight li {
-            color: white;
-        }
-
         .comparison-card li::before {
-            content: '▸';
+            content: '•';
             position: absolute;
             left: 5px;
-            color: #667eea;
+            color: #2c3e50;
             font-weight: bold;
-        }
-
-        .comparison-card.highlight li::before {
-            color: white;
         }
 
         .workflow {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             margin-top: 30px;
         }
 
         .workflow-step {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-            border-radius: 15px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 8px;
             text-align: center;
-            width: 150px;
+            width: 180px;
             flex-shrink: 0;
         }
 
         .step-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 50px;
+            height: 50px;
+            background: #2c3e50;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin: 0 auto 10px;
+            margin: 0 auto 15px;
         }
 
         .workflow-step h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
         }
 
         .workflow-step p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #666;
+            line-height: 1.5;
         }
 
         .code-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 10px;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px;
+            border-radius: 8px;
             overflow-x: auto;
             margin-top: 20px;
             font-family: 'Courier New', monospace;
@@ -224,9 +192,9 @@
 
         footer {
             text-align: center;
-            padding: 30px;
-            background: #f5f7fa;
-            color: #666;
+            padding: 40px 20px;
+            background: #2c3e50;
+            color: #ecf0f1;
         }
 
         footer p {
@@ -234,13 +202,24 @@
         }
 
         .links a {
-            color: #667eea;
+            color: #3498db;
             text-decoration: none;
             margin: 0 15px;
         }
 
         .links a:hover {
             text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+            vertical-align: middle;
         }
 
         @media (max-width: 768px) {
@@ -254,7 +233,15 @@
             }
 
             main {
-                padding: 20px;
+                padding: 0 15px 40px;
+            }
+
+            .workflow {
+                flex-direction: column;
+            }
+
+            .workflow-step {
+                width: 100%;
             }
         }
     </style>
@@ -262,31 +249,27 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Stage Spec QA</h1>
-            <p class="subtitle">AI 驱动的领域测试解决方案</p>
-            <div class="version">v0.0.1</div>
+            <h1>Stage Spec QA <span class="badge">v0.0.1</span></h1>
+            <p class="subtitle">领域测试自动化解决方案</p>
         </header>
 
         <main>
             <section>
                 <h2>什么是 Stage Spec QA？</h2>
-                <p>Stage Spec QA 是一个基于 Agent Skills 和领域代码片段的智能测试自动化平台。通过领域代码片段约束测试步骤，结合 AI 理解能力，实现高效、稳定的测试自动化。</p>
+                <p>Stage Spec QA 是一个基于领域代码片段的测试自动化平台。通过代码片段约束测试步骤，确保测试执行的确定性和一致性。</p>
 
                 <div class="features">
                     <div class="feature-card">
-                        <div class="icon">🎯</div>
                         <h3>领域驱动</h3>
-                        <p>通过领域代码片段约束测试步骤，确保测试执行的幂等性和一致性</p>
+                        <p>通过领域代码片段约束测试步骤，确保测试执行的确定性和一致性</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">🤖</div>
-                        <h3>AI 增强</h3>
-                        <p>利用 Claude Code 等大语言模型理解用例语义，智能编排测试流程</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">🔧</div>
                         <h3>协议化</h3>
-                        <p>标准化 workflow 执行协议，固化关键步骤，减少 AI 推理不确定性</p>
+                        <p>标准化 workflow 执行协议，固化关键步骤，减少执行不确定性</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>可扩展</h3>
+                        <p>支持通过插件集成拓展测试能力，适应不同业务场景</p>
                     </div>
                 </div>
             </section>
@@ -295,49 +278,43 @@
                 <h2>核心能力</h2>
                 <div class="features">
                     <div class="feature-card">
-                        <div class="icon">📝</div>
                         <h3>用例解析</h3>
-                        <p>智能理解测试用例文档，自动解析测试步骤、预期结果和测试数据</p>
+                        <p>解析测试用例文档，提取测试步骤和预期结果</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">🔍</div>
                         <h3>四层感知</h3>
-                        <p>领域代码片段 → 前端框架 API → 无障碍树 → AI 视觉理解，精确建模页面</p>
+                        <p>领域代码片段、前端框架 API、无障碍树、视觉理解</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">⚡</div>
                         <h3>自动执行</h3>
-                        <p>AI 推理驱动的测试执行，支持登录、导航、表单操作等复杂场景</p>
+                        <p>支持登录、导航、表单操作等复杂测试场景</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">📊</div>
                         <h3>报告生成</h3>
-                        <p>自动生成 HTML 测试报告，支持用例通过率、执行时间等指标展示</p>
+                        <p>自动生成测试报告，展示执行结果和通过率</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">💾</div>
                         <h3>脚本落袋</h3>
-                        <p>测试通过后自动生成标准 Playwright 脚本，支持历史用例增量更新</p>
+                        <p>通过的用例生成标准 Playwright 脚本</p>
                     </div>
                     <div class="feature-card">
-                        <div class="icon">🎨</div>
                         <h3>领域插件</h3>
-                        <p>支持地图选择等业务个性化场景，通过插件集成拓展测试能力</p>
+                        <p>支持地图选择等业务个性化场景</p>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>对比其他方案</h2>
+                <h2>方案对比</h2>
                 <div class="comparison">
                     <div class="comparison-card highlight">
-                        <h3>✨ Stage Spec QA</h3>
+                        <h3>Stage Spec QA</h3>
                         <ul>
-                            <li>领域代码片段保障幂等性</li>
-                            <li>AI 理解 + 协议化执行，平衡效率与精度</li>
-                            <li>四层感知策略，适应不同页面类型</li>
-                            <li>固化 workflow，对冲模型不确定性</li>
-                            <li>业务场景可扩展，支持领域插件</li>
+                            <li>领域代码片段保障确定性</li>
+                            <li>协议化执行，效率与精度平衡</li>
+                            <li>四层感知策略，适应不同页面</li>
+                            <li>固化 workflow，执行稳定</li>
+                            <li>业务场景可扩展</li>
                             <li>标准 Playwright 脚本产出</li>
                         </ul>
                     </div>
@@ -354,7 +331,7 @@
                     </div>
 
                     <div class="comparison-card">
-                        <h3>纯视觉 Midscene</h3>
+                        <h3>纯视觉方案</h3>
                         <ul>
                             <li>完全依赖视觉推理，执行速度慢</li>
                             <li>页面样式变更影响识别</li>
@@ -365,7 +342,7 @@
                     </div>
 
                     <div class="comparison-card">
-                        <h3>Playwright MCP</h3>
+                        <h3>MCP 通用方案</h3>
                         <ul>
                             <li>通用方案，缺乏领域约束</li>
                             <li>复杂场景需要大量 Prompt 工程</li>
@@ -387,18 +364,18 @@
                     </div>
                     <div class="workflow-step">
                         <div class="step-number">2</div>
-                        <h4>AI 理解</h4>
-                        <p>智能编排执行规划</p>
+                        <h4>理解规划</h4>
+                        <p>编排执行规划</p>
                     </div>
                     <div class="workflow-step">
                         <div class="step-number">3</div>
                         <h4>页面感知</h4>
-                        <p>四层感知策略定位</p>
+                        <p>定位页面元素</p>
                     </div>
                     <div class="workflow-step">
                         <div class="step-number">4</div>
                         <h4>执行动作</h4>
-                        <p>AI 推理执行操作</p>
+                        <p>执行测试操作</p>
                     </div>
                     <div class="workflow-step">
                         <div class="step-number">5</div>
@@ -408,7 +385,7 @@
                     <div class="workflow-step">
                         <div class="step-number">6</div>
                         <h4>脚本落袋</h4>
-                        <p>生成 Playwright 脚本</p>
+                        <p>生成测试脚本</p>
                     </div>
                 </div>
             </section>
@@ -433,11 +410,10 @@ stage-cli report --result-dir stage-cli-test/20260320164459</pre>
         </main>
 
         <footer>
-            <p>© 2024 Stage Spec QA. 基于 Agent Skills 构建</p>
+            <p>© 2024 Stage Spec QA</p>
             <div class="links">
-                <a href="https://github.com/anthropics/skills" target="_blank">Agent Skills</a>
                 <a href="https://playwright.dev" target="_blank">Playwright</a>
-                <a href="https://claude.ai" target="_blank">Claude AI</a>
+                <a href="https://github.com/anthropics/skills" target="_blank">Agent Skills</a>
             </div>
         </footer>
     </div>
